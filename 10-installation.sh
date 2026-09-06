@@ -2,17 +2,17 @@
 
 USER_ID=$(id -u)
 
-if [ $USER_ID -ne 0 ]; then
-   echo "Run this script as root user"
+if [ USER_ID -ne 0 ]; then
+   echo "run the script as root user"
    exit 1
-fi 
+fi
 
-echo "Instatlling Nginx"
-dnf install nginxxxx -y
+echo "Installing Nginx"
+dnf install nginx -y
 
 if [ $? -ne 0 ]; then
-   echo "Installing Nginx is FAILURE"
-   exit 1
+  echo "Nginx installation failure"
+  exit 1
 else
-   echo "Installing Nginx is SUCCESS"
+  echo "Nginx installed successfully"
 fi
