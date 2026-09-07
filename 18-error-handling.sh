@@ -1,6 +1,7 @@
 #! /bin/bash
 
 set -e #exits the script when there is an error
+trap 'echo "There is an error in $LINENO, command: $BASHCOMMAND"' ERR
 
 R="\e[31m"
 G="\e[32m"
