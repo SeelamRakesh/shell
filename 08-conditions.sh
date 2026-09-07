@@ -7,5 +7,5 @@ if [ $NUMBER -gt 20 ]; then
 elif [ $NUMBER -lt 20 ]; then
   echo "Given number: $NUMBER is less than 20"
 else
-  echo "Given number: $NUMBER is equal than 20"
+  echo "Given number: $NUMBER is equal to 20"
 fi
