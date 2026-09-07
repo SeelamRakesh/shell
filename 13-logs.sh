@@ -3,7 +3,7 @@
 LOG_FOLDER="/var/log/shell_script"
 LOG_FILE="/var/log/shell_script/$0.log"
 
-USER_ID=$((id -u))
+USER_ID=$(id -u)
 
 mkdir -p $LOG_FOLDER
 
@@ -24,7 +24,7 @@ VALIDATE(){
 
 for PACKAGE in $@
 do 
-  dnf list installed $PACKAGE | tee -a $LOG_FILE
+  dnf list installed $PACKAGE &>> $LOG_FILE
   if [ $? -ne 0 ]; then
     echo "$PACKAGE not installed installing now"
     dnf install $PACKAGE -y &>> $LOG_FILE
