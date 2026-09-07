@@ -3,7 +3,7 @@
 LOG_FOLDER="/var/log/shell_script"
 LOG_FILE="/var/log/shell_script/$0/log"
 
-USER_ID=(id -u)
+USER_ID=$((id -u))
 
 if [ $USER_ID -ne 0 ]; then
   echo "Run this script as Root User" | tee -a $LOG_FILE
