@@ -13,10 +13,10 @@ if [ $USER_ID -ne 0 ]; then
 fi
 
 
-
 VALIDATE(){
   if [ $1 -ne 0 ]; then
     echo "$2 FAILURE" | tee -a $LOG_FILE
+    exit 1
   else 
     echo "$2 SUCCESS" | tee -a $LOG_FILE
   fi
@@ -26,7 +26,7 @@ for PACKAGE in $@
 do 
   dnf list installed $PACKAGE | tee -a $LOG_FILE
   if [ $? -ne 0 ]; then
-    echo "$PAKCAGE not installed installing now"
+    echo "$PACKAGE not installed installing now"
     dnf install $PACKAGE -y &>> $LOG_FILE
     VALIDATE $? "$PACKAGE installation"
   else 
