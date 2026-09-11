@@ -16,8 +16,14 @@ if [ $USER_ID -ne 0 ]; then
    exit 1
 fi
 
+mkdir -p $LOGS_FOLDER
+
+log(){
+   echo -e "$(date "+%d-%m-%Y %H:%M:%S") | $1" | tee -a >> $LOGS_FILE
+}
+
 Usage(){
-   echo "USAGE: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14days]"
+   echo "USAGE: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14days]" | tee -a >> $LOGS_FILE
    exit 1
 }
 
@@ -26,11 +32,34 @@ if [ $# -lt 2 ]; then
 fi
 
 if [ ! -d $SOURCE_DIR ]; then
-   echo "$SOURCE_DIR doesn't exist"
+   log "$SOURCE_DIR doesn't exist" | tee -a >> $LOGS_FILE
    exit 1
 fi
 
 if [ ! -d $DEST_DIR ]; then
-   echo "$DEST_DIR doesn't exist"
+   log "$DEST_DIR doesn't exist" | tee -a >> $LOGS_FILE
    exit 1
+fi
+
+FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
+
+if [ -z "${FILES}"]; then
+  log "Files not found for backup $Y SKIPPING $N"
+else
+  log -e "$G Files found for Archive $N"
+  TIME_STAMP=$(date +%F-%H-%M-%S)
+  ZIP_FILE_NAME="$DEST_DIR/app_logs-$TIME_STAMP.tar.gz"
+  tar -zcvf $ZIP_FILE_NAME $(find "$SOURCE_DIR" -name "*.log" -type f -mtime +$DAYS)
+   
+  if [ -f $ZIP_FILE_NAME ]; then
+     log "Archival $G Success $N"
+     while IFS= read -r filepath;
+     do
+       echo "Deleting file: $filepath"
+       rm -f $filepath
+       echo "Deleted file: $filepath"
+     done <<< $FILES
+   else
+     log "$R Archival Failure $N"
+   fi 
 fi
