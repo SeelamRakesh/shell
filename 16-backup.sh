@@ -17,10 +17,20 @@ if [ $USER_ID -ne 0 ]; then
 fi
 
 Usage(){
-   echo " USAGE: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14days]"
+   echo "USAGE: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14days]"
    exit 1
 }
 
 if [ $# -lt 2 ]; then
   Usage
+fi
+
+if [ ! -d $SOURCE_DIR ]; then
+   echo "$SOURCE_DIR doesn't exist"
+   exit 1
+fi
+
+if [ ! -d $DEST_DIR ]; then
+   echo "$DEST_DIR doesn't exist"
+   exit 1
 fi
