@@ -19,11 +19,11 @@ fi
 mkdir -p $LOGS_FOLDER
 
 log(){
-   echo -e "$(date "+%d-%m-%Y %H:%M:%S") | $1" | tee -a >> $LOGS_FILE
+   echo -e "$(date "+%d-%m-%Y %H:%M:%S") | $1" | tee -a $LOGS_FILE
 }
 
 Usage(){
-   echo "USAGE: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14days]" | tee -a >> $LOGS_FILE
+   echo "USAGE: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14days]" | tee -a $LOGS_FILE
    exit 1
 }
 
