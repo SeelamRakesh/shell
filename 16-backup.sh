@@ -7,5 +7,20 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+SOURCE_DIR=$1
+DEST_DIR=$2
+DAYS=${3:-14}
 
+if [ $USER_ID -ne 0 ]; then
+   echo "Run this script as Root User"
+   exit 1
+fi
 
+Usage(){
+   echo " USAGE: <SOURCE_DIR> <DEST_DIR> <DAYS>[Default 14days]"
+   exit 1
+}
+
+if [ $# -lt 2 ]; then
+  Usage
+fi
