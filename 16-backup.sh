@@ -32,12 +32,12 @@ if [ $# -lt 2 ]; then
 fi
 
 if [ ! -d $SOURCE_DIR ]; then
-   log "$SOURCE_DIR doesn't exist" | tee -a >> $LOGS_FILE
+   log "$SOURCE_DIR doesn't exist" 
    exit 1
 fi
 
 if [ ! -d $DEST_DIR ]; then
-   log "$DEST_DIR doesn't exist" | tee -a >> $LOGS_FILE
+   log "$DEST_DIR doesn't exist" 
    exit 1
 fi
 
