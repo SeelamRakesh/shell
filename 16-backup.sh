@@ -49,6 +49,7 @@ else
   log "$G Files found for Archive $N"
   TIME_STAMP=$(date +%F-%H-%M-%S)
   ZIP_FILE_NAME="$DEST_DIR/app_logs-$TIME_STAMP.tar.gz"
+  log "Archieve name: $ZIP_FILE_NAME"
   tar -zcvf $ZIP_FILE_NAME $(find "$SOURCE_DIR" -name "*.log" -type f -mtime +$DAYS)
    
   if [ -f $ZIP_FILE_NAME ]; then
