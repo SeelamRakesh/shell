@@ -55,9 +55,9 @@ else
      log "Archival $G Success $N"
      while IFS= read -r filepath;
      do
-       echo "$R Deleting $N file: $filepath"
+       log "$R Deleting $N file: $filepath"
        rm -f $filepath
-       echo "$R Deleted $N file: $filepath"
+       log "$R Deleted $N file: $filepath"
      done <<< $FILES
    else
      log "$R Archival Failure $N"
