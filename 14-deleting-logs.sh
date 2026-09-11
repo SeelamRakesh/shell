@@ -15,7 +15,7 @@ fi
 
 FILES_TO_DELETE=$(find app_logs -name "*.logs" -mtime +14)
 
-while IFS=read -r filepath ; do 
+while IFS= read -r filepath ; do 
   echo $filepath
 done <<< $FILES_TO_DELETE
 
