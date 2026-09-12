@@ -2,6 +2,7 @@
 
 DISK_USAGE=$(df -hT | grep -v Filesystem)
 USAGE_THRESHOLD=3
+IP_ADDRESS=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
 
 while IFS= read -r line
 do
