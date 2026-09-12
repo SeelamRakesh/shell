@@ -13,7 +13,7 @@ do
     fi
 done <<< $DISK_USAGE
 
-echo "$MESSAGE"
+echo -e "$MESSAGE"
 
 # DISK_USAGE=$(df -hT | grep -v Filesystem)
 # USAGE_THRESHOLD=3
